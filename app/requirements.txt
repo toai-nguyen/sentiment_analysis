@@ -1,0 +1,9 @@
+# requirements.txt
+flask==2.3.3
+pyspark==3.5.0
+pymongo==4.6.1
+pandas==2.2.0
+numpy==1.26.3
+scikit-learn==1.4.0
+nltk==3.8.1
+jupyter==1.0.0

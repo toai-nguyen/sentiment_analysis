@@ -1,0 +1,26 @@
+# version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"  # Port cho Flask
+      - "8888:8888"  # Port cho Jupyter Notebook
+    volumes:
+      - ./app:/app
+      - ./notebooks:/notebooks
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/big_data_sentiment_analysis
+    depends_on:
+      - mongo
+    command: bash -c "jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --no-browser & python main.py"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
